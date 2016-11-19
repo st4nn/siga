@@ -1,0 +1,704 @@
+
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>SIGA</title>
+
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+        <link href="vendors/bootgrid/jquery.bootgrid.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
+
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet">
+        
+    </head>
+    <body data-ma-header="teal">
+        <header id="header" class="media">
+            <div class="pull-left h-logo">
+                <a href="home.html" class="hidden-xs">
+                    <img width="65px" src="img/logo_blanco.png">
+                    <small class="f-9">Sistema de Gestión de Activos</small>
+                </a>
+                
+                <div class="menu-collapse" data-ma-action="sidebar-open" data-ma-target="main-menu">
+                    <div class="mc-wrap">
+                        <div class="mcw-line top palette-White bg"></div>
+                        <div class="mcw-line center palette-White bg"></div>
+                        <div class="mcw-line bottom palette-White bg"></div>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="pull-right h-menu">
+                <li class="dropdown hidden-xs hidden-sm h-apps">
+                    <a data-toggle="dropdown" href="">
+                        <i class="hm-icon zmdi zmdi-apps"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li>
+                            <a href="buscar.html">
+                                <i class="palette-Red-400 bg zmdi zmdi-search"></i>
+                                <small>Buscar Activos</small>
+                            </a>
+                        </li>
+                        
+                        <li>
+                            <a href="ingresar.html">
+                                <i class="palette-Green-400 bg zmdi zmdi-collection-plus"></i>
+                                <small>Ingresar Activo</small>
+                            </a>
+                        </li>
+                        <br>
+                        <li>
+                            <a href="reportes.html">
+                                <i class="palette-Light-Blue bg zmdi zmdi-assignment"></i>
+                                <small>Reportes</small>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="usuarios.html">
+                                <i class="palette-Orange-400 bg zmdi zmdi-accounts"></i>
+                                <small>Usuarios</small>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown hm-profile">
+                    <a data-toggle="dropdown" href="">
+                        <img src="img/profile-pics/1.jpg" alt="">
+                    </a>
+                    
+                    <ul class="dropdown-menu pull-right dm-icon">
+                        <li>
+                            <a href=""><i class="zmdi zmdi-run"></i> Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <div class="media-body h-search">
+            	<h1 class="c-white text-center">Buscar Activos</h1>
+            </div>
+            
+        </header>
+
+        <section id="main">
+            <aside id="s-main-menu" class="sidebar">
+                <div class="smm-header">
+                    <i class="zmdi zmdi-long-arrow-left" data-ma-action="sidebar-close"></i>
+                </div>
+
+                <ul class="smm-alerts">
+
+                </ul>
+
+                <ul class="main-menu">
+                	<br><br><br>
+                    <li id="lnkBuscar_BusquedaAvanzada" class="hide"><a data-toggle="modal" href="#modalWider"><i class="zmdi zmdi-my-location"></i> Busqueda Avanzada 1</a></li>
+                    
+                    <li id="lnkBuscar_VolverABusqueda" class=""><a data-toggle="modal" href="#modalWider"><i class="zmdi zmdi-search-for"></i> Volver a la Busqueda</a></li>
+                                        
+                    <br><br><li id="lnkCerrarSesion"><a href="#"><i class="zmdi zmdi-run"></i> Cerrar Sesión</a></li>
+                    
+                </ul>
+            </aside>
+
+            <input id="txtBuscar_ItemSeleccionado" type="hidden">
+            <section id="cntBusqueda" class="hide">
+                <div class="container">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <form class="p-relative">
+                                    <input type="text" class="hs-input" placeholder="Buscar por responsable, regional, placa, etc...">
+                                    <i class="zmdi zmdi-search hs-reset c-cyan"  data-ma-action="search-clear"></i>
+                                    <div class="col-sm-12">
+                                        <div class="m-5 text-center">
+                                            <button class="btn palette-Blue-Grey bg waves-effect">Buscar</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <br><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 hidden">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">BUSQUEDA AVANZADA</h4>
+                            </div>
+                            <button class="btn btn-block palette-Blue-Grey bg waves-effect">Agregar Parámetro</button>
+                            <div class="card-body">
+                                <p>Poner aqui los parametros</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body card-padding">
+                                <div class="pull-right">
+                                    <div id="cntBuscar_OpcionesRegistro" class="btn-group">
+                                        <button type="button" class="btn waves-effect" disabled="disabled"><i class="zmdi zmdi-collection-image"></i> Ver Detalles</button>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table id="tblBuscar_Resultados" class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th data-column-id="id" data-type="numeric" data-identifier="true">ID</th>
+                                                <th data-column-id="Regional">Regional</th>
+                                                <th data-column-id="Descripcion" data-order="desc">Nombre</th>
+                                                <th data-column-id="Placa" data-order="desc">Placa</th>
+                                                <th data-column-id="Responsable" data-order="desc">Responsable</th>
+                                                <th data-column-id="Estado" data-order="desc">Estado</th>
+                                                <th data-column-id="Serial" data-order="desc">Serial</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>123</td>
+                                                <td>la Regional</td>
+                                                <td>el Nombre</td>
+                                                <td>la Placa</td>
+                                                <td>El Responsable</td>
+                                                <td>El Estado</td>
+                                                <td>El Serial</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="cntBusqueda_Detalles">
+                <div class="container">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body card-padding">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <button class="btn btn-default waves-effect btnBuscar_Detalles_Editar"><i class="zmdi zmdi-border-color"></i></button>
+                                        <span class="text-uppercase f-20 m-l-15">Impresora</span>
+                                        <input type="text" class="form-control hide" id="txtIngresar_Modelo" rows="3" placeholder="Nombre">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <button class="btn btn-default waves-effect btnBuscar_Detalles_Editar"><i class="zmdi zmdi-border-color"></i></button>
+                                        <span class="text-uppercase f-20 m-l-15">C1eB00100005</span>
+                                        <input type="text" class="form-control hide" id="txtIngresar_Modelo" rows="3" placeholder="Placa">
+                                    </div>
+                                </div>
+                                <br><br>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="txtIngresar_Modelo" class="col-sm-3 control-label text-right">Regional</label>
+                                        <div class="col-sm-7">
+                                            <div class="fg-line m-l-25">
+                                                <span class="text-uppercase">CENTRO</span>
+                                                <input type="text" class="form-control hide" id="txtIngresar_Modelo" rows="3" placeholder="Regional">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="txtIngresar_Modelo" class="col-sm-3 control-label text-right">Area</label>
+                                        <div class="col-sm-7">
+                                            <div class="fg-line m-l-25">
+                                                <span class="text-uppercase">Telecomunicaciones</span>
+                                                <input type="text" class="form-control hide" id="txtIngresar_Modelo" rows="3" placeholder="Area">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="txtIngresar_Modelo" class="col-sm-3 control-label text-right">Responsable</label>
+                                        <div class="col-sm-7">
+                                            <div class="fg-line m-l-25">
+                                                <span class="text-uppercase">Jhonathan Espinosa</span>
+                                                <input type="text" class="form-control hide" id="txtIngresar_Modelo" rows="3" placeholder="Responsable">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br><br>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="txtIngresar_Modelo" class="col-sm-3 control-label text-right">Descripción</label>
+                                        <div class="col-sm-7">
+                                            <div class="fg-line m-l-25">
+                                                <button class="btn btn-default waves-effect btnBuscar_Detalles_Editar"><i class="zmdi zmdi-border-color"></i></button>
+                                                <span class="text-uppercase m-l-15">Impresora Kyocera fs 3040</span>
+                                                <input type="text" class="form-control hide" id="txtIngresar_Modelo" rows="3" placeholder="Descripción">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="txtIngresar_Modelo" class="col-sm-3 control-label text-right">Estado</label>
+                                        <div class="col-sm-7">
+                                            <div class="fg-line m-l-25">
+                                                <button class="btn btn-default waves-effect btnBuscar_Detalles_Editar"><i class="zmdi zmdi-border-color"></i></button>
+                                                <span class="text-uppercase m-l-15">Rayada</span>
+                                                <input type="text" class="form-control hide" id="txtIngresar_Modelo" rows="3" placeholder="Estado">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="txtIngresar_Modelo" class="col-sm-3 control-label text-right">Serial</label>
+                                        <div class="col-sm-7">
+                                            <div class="fg-line m-l-25">
+                                                <button class="btn btn-default waves-effect btnBuscar_Detalles_Editar"><i class="zmdi zmdi-border-color"></i></button>
+                                                <span class="text-uppercase m-l-15">NNJ2201180</span>
+                                                <input type="text" class="form-control hide" id="txtIngresar_Modelo" rows="3" placeholder="Serial">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="txtIngresar_Modelo" class="col-sm-3 control-label text-right">Modelo</label>
+                                        <div class="col-sm-7">
+                                            <div class="fg-line m-l-25">
+                                                <button class="btn btn-default waves-effect btnBuscar_Detalles_Editar"><i class="zmdi zmdi-border-color"></i></button>
+                                                <span class="text-uppercase m-l-15">FS 3040 MFP</span>
+                                                <input type="text" class="form-control hide" id="txtIngresar_Modelo" rows="3" placeholder="Modelo">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="txtIngresar_Modelo" class="col-sm-3 control-label text-right">Marca</label>
+                                        <div class="col-sm-7">
+                                            <div class="fg-line m-l-25">
+                                                <button class="btn btn-default waves-effect btnBuscar_Detalles_Editar"><i class="zmdi zmdi-border-color"></i></button>
+                                                <span class="text-uppercase m-l-15">Kyocera</span>
+                                                <input type="text" class="form-control hide" id="txtIngresar_Modelo" rows="3" placeholder="Marca">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="txtIngresar_Modelo" class="col-sm-3 control-label text-right">Proveedor</label>
+                                        <div class="col-sm-7">
+                                            <div class="fg-line m-l-25">
+                                                <button class="btn btn-default waves-effect btnBuscar_Detalles_Editar"><i class="zmdi zmdi-border-color"></i></button>
+                                                <span class="text-uppercase m-l-15">Ofimarcas</span>
+                                                <input type="text" class="form-control hide" id="txtIngresar_Modelo" rows="3" placeholder="Proveedor">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="txtIngresar_Modelo" class="col-sm-3 control-label text-right">Factura</label>
+                                        <div class="col-sm-7">
+                                            <div class="fg-line m-l-25">
+                                                <button class="btn btn-default waves-effect btnBuscar_Detalles_Editar"><i class="zmdi zmdi-border-color"></i></button>
+                                                <span class="text-uppercase m-l-15">FV773466</span>
+                                                <input type="text" class="form-control hide" id="txtIngresar_Modelo" rows="3" placeholder="Factura">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <label for="txtIngresar_Modelo" class="col-sm-3 control-label text-right">Valor</label>
+                                        <div class="col-sm-7">
+                                            <div class="fg-line m-l-25">
+                                                <button class="btn btn-default waves-effect btnBuscar_Detalles_Editar"><i class="zmdi zmdi-border-color"></i></button>
+                                                <span class="text-uppercase m-l-15">$ 16.446.488</span>
+                                                <input type="text" class="form-control hide" id="txtIngresar_Modelo" rows="3" placeholder="Valor">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header ch-dark palette-Teal-300 bg">
+                                <h2>Observaciones <small>Comentarios consignados acerca del activo</small></h2>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="list-group lg-alt c-overflow">
+                                    <a href="" class="list-group-item media">
+                                        <div class="pull-left">
+                                            <img class="avatar-img" src="img/profile-pics/1.jpg" alt="">
+                                        </div>
+
+                                        <div class="media-body">
+                                            <div class="lgi-heading">David Villa Jacobs <small class="pull-right">Hace 8 horas</small></div>
+                                            <small class="lgi-text">Sorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mattis lobortis sapien non posuere</small>
+                                        </div>
+                                    </a>
+
+                                    <a href="" class="list-group-item media">
+                                        <div class="pull-left">
+                                            <img class="avatar-img" src="img/profile-pics/1.jpg" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="lgi-heading">Candice Barnes <small class="pull-right">Hace 8 horas</small></div>
+                                            <small class="lgi-text">Quisque non tortor ultricies, posuere elit id, lacinia purus curabitur.</small>
+                                        </div>
+                                    </a>
+
+                                    <a href="" class="list-group-item media">
+                                        <div class="pull-left">
+                                            <img class="avatar-img" src="img/profile-pics/1.jpg" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="lgi-heading">Jeannette Lawson <small class="pull-right">Hace 8 horas</small> </div>
+                                            <small class="lgi-text">Donec congue tempus ligula, varius hendrerit mi hendrerit sit amet. Duis ac quam sit amet leo feugiat iaculis</small>
+                                        </div>
+                                    </a>
+
+                                    <a href="" class="list-group-item media">
+                                        <div class="pull-left">
+                                            <img class="avatar-img" src="img/profile-pics/1.jpg" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="lgi-heading">Darla Mckinney <small class="pull-right">Hace 8 horas</small></div>
+                                            <small class="lgi-text">Duis tincidunt augue nec sem dignissim scelerisque. Vestibulum rhoncus sapien sed nulla aliquam lacinia</small>
+                                        </div>
+                                    </a>
+
+                                    <a href="" class="list-group-item media">
+                                        <div class="pull-left">
+                                            <img class="avatar-img" src="img/profile-pics/1.jpg" alt="">
+                                        </div>
+                                        <div class="media-body">
+                                            <div class="lgi-heading">Rudolph Perez <small class="pull-right">Hace 8 horas</small></div>
+                                            <small class="lgi-text">Phasellus a ullamcorper lectus, sit amet viverra quam. In luctus tortor vel nulla pharetra bibendum</small>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="ms-reply">
+                                    <div class="fg-line">
+                                        <textarea class="form-control" placeholder="Enviar nuevo comentario..."></textarea>
+                                        
+                                    </div>
+                                    <button><i class="zmdi zmdi-mail-send"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card picture-list">
+                            <div class="card-header ch-dark palette-Teal-300 bg">
+                                <h2>Archivos <small>Asociados al Activo</small></h2>
+                            </div>
+
+                            <div class="pl-body clearfix">
+                                <div class="col-xs-3">
+                                    <a href="">
+                                        <img src="img/headers/square/1.png" alt="">
+                                    </a>
+                                </div>
+
+                                <div class="col-xs-3">
+                                    <a href="">
+                                        <img src="img/headers/square/2.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="col-xs-3">
+                                    <a href="">
+                                        <img src="img/headers/square/3.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="col-xs-3">
+                                    <a href="">
+                                        <img src="img/headers/square/4.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="col-xs-3">
+                                    <a href="">
+                                        <img src="img/headers/square/5.png" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <button class="btn palette-Teal-300 bg btn-lg btn-block"> Agregar Archivo</button>
+                        </div>
+                        <div class="card">
+                            <div class="card-header ch-dark palette-Teal-300 bg">
+                                <h2>Trazabilidad <small>Comentarios consignados acerca del activo</small></h2>
+                            </div>
+                            <div class="card-body table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th class="text-right" colspan="3">Origen</th>
+                                            <th class="text-left" colspan="3">Destino</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <th>Regional</th>
+                                            <th>Area</th>
+                                            <th>Responsable</th>
+                                            <th>Regional</th>
+                                            <th>Area</th>
+                                            <th>Responsable</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2016-00-00 00:00:00</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>Coporativo</td>
+                                            <td>TI</td>
+                                            <td>Jhonathan</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2016-00-00 00:00:00</td>
+                                            <td>Coporativo</td>
+                                            <td>TI</td>
+                                            <td>Jhonathan</td>
+                                            <td>Centro</td>
+                                            <td>Telecomunicaciones</td>
+                                            <td>Pablo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2016-00-00 00:00:00</td>
+                                            <td>Centro</td>
+                                            <td>Telecomunicaciones</td>
+                                            <td>Pablo</td>
+                                            <td>Coporativo</td>
+                                            <td>TI</td>
+                                            <td>Luis</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="progress">
+                            <div class="progress-bar ch-dark palette-Blue-Grey-700 bg" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                            </div>
+                        </div>
+                                <br>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header ch-dark palette-Teal-300 bg">
+                                <h2>Trasladar Activo</h2>
+                            </div>
+                            <div class="card-body card-padding">
+                                <form action="" class="form-horizontal m-t-10">
+                                    <div class="row">
+                                         <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="txtIngresar_Regional" class="col-sm-4 control-label">Regional</label>
+                                                <div class="col-sm-7">
+                                                    <div class="fg-line">
+                                                        <div class="select">
+                                                            <select class="form-control" id="txtIngresar_Regional" placeholder="Regional">
+                                                                <option value="">1</option>
+                                                                <option value="">2</option>
+                                                                <option value="">3</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>                                    
+                                         
+                                         </div>
+                                         <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="txtIngresar_CentroDeCosto" class="col-sm-4 control-label">Centro de Costo</label>
+                                                <div class="col-sm-8">
+                                                    <div class="fg-line">
+                                                        <div class="select">
+                                                            <select class="form-control" id="txtIngresar_CentroDeCosto" placeholder="Centro de Costo">
+                                                                <option value="">1</option>
+                                                                <option value="">2</option>
+                                                                <option value="">3</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                         </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="txtIngresar_Responsable" class="col-sm-2 control-label">Responsable</label>
+                                            <div class="col-sm-10">
+                                                <div class="fg-line">
+                                                    <input type="text" class="form-control" id="txtIngresar_Responsable" placeholder="Nombre del Nuevo Responsable">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-success waves-effect text-right btn-block"><i class="zmdi zmdi-rotate-cw zmdi-hc-fw"></i> Trasladar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header ch-dark palette-Red-400 bg">
+                                <h2>Dar de Baja</h2>
+                            </div>
+                            <div class="card-body card-padding">
+                                <form action="" class="form-horizontal m-t-10">
+                                    <div class="row">
+                                        <div class="form-group has-error">
+                                            <label for="txtIngresar_Responsable" class="col-sm-12 control-label"><small class="f-8">Por seguridad</small> Digite el Nombre del Activo</label>
+                                            <div class="col-sm-12">
+                                                <div class="fg-line">
+                                                    <input type="text" class="form-control" id="txtIngresar_Responsable" placeholder="Nombre del Activo" required="true">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="txtIngresar_Responsable" class="col-sm-12 control-label">Observaciones Finales</label>
+                                            <div class="col-sm-12">
+                                                <div class="fg-line">
+                                                    <textarea type="text" rows="3" class="form-control" id="txtIngresar_Responsable" placeholder="Observaciones Finales"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-danger waves-effect text-right btn-block"><i class="zmdi zmdi-delete zmdi-hc-fw"></i> Dar de Baja</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <footer id="footer">
+                <!--Copyright &copy; 2015 Material Admin-->
+
+                <ul class="f-menu">
+                    <img src="img/wsplogo_gris.png" alt="">
+                </ul>
+            </footer>
+
+        </section>
+
+        <!-- Page Loader -->
+        <div class="page-loader palette-Teal bg">
+            <div class="preloader pl-xl pls-white">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Javascript Libraries -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bootgrid/jquery.bootgrid.updated.min.js"></script>
+        <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
+
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+        <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+
+        <script src="js/functions.js"></script>
+        <script src="js/actions.js"></script>
+        
+        <script>
+            $("#tblBuscar_Resultados").bootgrid({
+                    css: {
+                        icon: 'zmdi icon',
+                        iconColumns: 'zmdi-view-module',
+                        iconDown: 'zmdi-expand-more',
+                        iconRefresh: 'zmdi-refresh',
+                        iconUp: 'zmdi-expand-less'
+                    },
+                    selection: true,
+                    multiSelect: false,
+                    rowSelect: true,
+                    keepSelection: true,
+                    caseSensitive: false,
+                    multiSort: true
+                }).on("selected.rs.jquery.bootgrid", function (e, row)
+                {
+                    $("#cntBuscar_OpcionesRegistro button").attr("disabled", false);
+                    $("#cntBuscar_OpcionesRegistro button").addClass('btn-info');
+                    $("#txtBuscar_ItemSeleccionado").val(row[0].id);
+                    $("#lnkBuscar_BusquedaAvanzada").hide();
+                    $("#lnkBuscar_VolverABusqueda").show();
+                }).on("deselected.rs.jquery.bootgrid", function (e, row)
+                {
+                    $("#cntBuscar_OpcionesRegistro button").attr("disabled", true);
+                    $("#cntBuscar_OpcionesRegistro button").removeClass('btn-info');
+                    $("#txtBuscar_ItemSeleccionado").val("");
+                    $("#lnkBuscar_BusquedaAvanzada").show();
+                    $("#lnkBuscar_VolverABusqueda").hide();
+                });
+
+            $("#lnkBuscar_VolverABusqueda").on("click", function()
+            {
+                $("#cntBusqueda").show();
+                $("#lnkBuscar_BusquedaAvanzada").show();
+                $("#lnkBuscar_VolverABusqueda").hide();
+            });
+
+            $(".btnBuscar_Detalles_Editar").on("click", function(evento)
+            {   
+                evento.preventDefault();
+                var contenedor = $(this).parent("div")
+                var obj = $(contenedor).find(".form-control");
+                $(this).removeClass("btnBuscar_Detalles_Editar");
+                $(contenedor).find("span").hide();
+                $(contenedor).find("i").removeClass("zmdi-border-color");
+                $(contenedor).find("i").addClass("zmdi-floppy");                
+                $(contenedor).find("i").addClass("btnBuscar_Detalles_Guardar");   
+
+                $(obj).show();
+                $(obj).focus();
+                
+                $(this).addClass("btnBuscar_Detalles_Guardar");
+            });
+/*
+            $(document).delegate('.btnBuscar_Detalles_Guardar', 'click', function(evento) 
+            {
+                evento.preventDefault();
+                alert("guardando");
+                var contenedor = $(this).parent("div")
+                var obj = $(contenedor).find(".form-control");
+                $(this).removeClass("btnBuscar_Detalles_Guardar");
+                $(this).addClass("btnBuscar_Detalles_Editar");
+                $(contenedor).find("span").show();
+                $(contenedor).find("span").text($(obj).val());
+                $(contenedor).find("i").addClass("zmdi-border-color");
+                $(contenedor).find("i").removeClass("zmdi-floppy");                
+                $(contenedor).find("i").removeClass("btnBuscar_Detalles_Guardar");   
+
+                $(obj).hide();
+            });*/
+        </script>
+    </body>
+  </html>
