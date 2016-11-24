@@ -196,6 +196,65 @@ function iniciarModulo()
 			Mensaje("Hey", "Debe ingresar por lo menos un filtro", "warning");
 		}
 	});
+
+	$("#txtBuscar_Traslado_Ciudad").cargarDatosConf("configuracion/cargarCombo", function()
+    {
+        $("#txtBuscar_Traslado_Ciudad").trigger('change');
+    }, {Tabla : 'ciudades'});
+
+    $("#txtBuscar_Traslado_Ciudad").on("change", function()
+    {
+        var idCiudad = $("#txtBuscar_Traslado_Ciudad").val();
+        $("#txtBuscar_Traslado_Sede").cargarDatosConf("configuracion/cargarCombo", function()
+        {
+        	$("#txtBuscar_Traslado_Sede").prepend('<option value="0">Ninguna</option>');
+        }, {Tabla : 'sedes', Condicion: 'idCiudad#=#' + idCiudad});
+    });
+
+    $("#txtBuscar_Traslado_CentroDeCosto").cargarDatosConf("configuracion/cargarCombo", function()
+        {
+        	$("#txtBuscar_Traslado_CentroDeCosto").prepend('<option value="0">Ninguno</option>');
+        }, {Tabla : 'areas'});
+
+    $('#txtBuscar_Traslado_idResponsable').on('loaded.bs.select', function (e) 
+    {
+  		var objeto = $("#txtBuscar_Traslado_idResponsable").parent(".bootstrap-select").find(".bs-searchbox").find("input");
+
+  		$(objeto).on("change keyup paste", function()
+  		{
+  			cargarResponsables($(objeto).val());
+  		});
+	});
+
+    $("#frmBuscar_AgregarResponsable").on("submit", function(evento)
+        {
+            evento.preventDefault();
+            $("#frmBuscar_AgregarResponsable").generarDatosEnvio("txtBuscar_AgregarResponsable_", function(datos)
+            {
+                $.post('server/php/proyecto/Buscar/agregarResponsable.php', 
+                    {
+                        Usuario: Usuario.id,
+                        datos: datos, 
+                        Ciudad : $("#txtBuscar_Traslado_Ciudad").val(), 
+                        Area : $("#txtBuscar_Traslado_CentroDeCosto").val()
+                    }, function(data, textStatus, xhr) 
+                {
+                    if (data.Error == "")
+                    {
+                        Mensaje("Hey", "Se agregó el responsable", "success", "bottom");
+                        $('#txtBuscar_Traslado_idResponsable').append('<option value="' + data.datos + '" data-tokens="' + $("#txtBuscar_AgregarResponsable_Cedula").val() + ' ' + $("#txtBuscar_AgregarResponsable_Nombre").val() + '">' + $("#txtBuscar_AgregarResponsable_Nombre").val() + '</option>');
+                        $("#txtBuscar_AgregarResponsable_Cedula").val("");
+                        $("#txtBuscar_AgregarResponsable_Nombre").val("");
+                        $("#txtBuscar_AgregarResponsable_Correo").val("");
+                        $('#txtBuscar_Traslado_idResponsable').selectpicker("refresh");
+                        $("#cntBuscar_AgregarResponsable").modal("hide");
+                    } else
+                    {
+                        Mensaje("Error", data.Error, "danger");
+                    }
+                }, "json");
+            });
+        });
 }
 
 function cargarActivo()
@@ -283,9 +342,6 @@ function cargarActivo()
 
 						$("#cntBuscar_Resultados_Comentarios").append(tds);
 					}
-
-					Traslados
-
 				}
 			} else
 			{
@@ -294,4 +350,49 @@ function cargarActivo()
 
 			$("#cntCargando").hide();
 		}, "json");
+}
+
+function cargarResponsables(parametro)
+{
+	if (parametro === undefined)
+	{
+		parametro = "";
+	}
+	var estado = $("#txtBuscar_Traslado_idResponsable").attr("data-estado");
+	if (estado == "listo")
+	{
+		$("#txtBuscar_Traslado_idResponsable").attr("data-estado", "buscando");
+		$("#txtBuscar_Traslado_idResponsable option").remove();
+		
+		$.post('server/php/proyecto/Ingresar/cargarResponsables.php', {Parametro : parametro, Ciudad: $("#txtBuscar_Traslado_Ciudad").val(), Area: $("#txtBuscar_Traslado_Sede").val()}, function(data, textStatus, xhr) 
+		{
+			if (data != 0 && typeof(data) == 'object')
+			{
+				$("#txtBuscar_Traslado_idResponsable").llenarCombito(data, function(){
+					$('#txtBuscar_Traslado_idResponsable').selectpicker("refresh");
+				});
+			}
+			$("#txtBuscar_Traslado_idResponsable").attr("data-estado", "listo");
+	
+		}, "json").fail(function()
+		{
+			Mensaje("Error", "No hay conexión con el servidor", "danger");
+			$("#txtBuscar_Traslado_idResponsable").attr("data-estado", "listo");		
+		});
+	}
+
+	$.fn.llenarCombito = function(data, callback)
+	{
+	  if (callback === undefined)
+	    {callback = function(){};}
+
+	  var elemento = $(this);
+	      var tds = "";
+	      $.each(data, function(index, val) 
+	      {
+	         tds += '<option value="' + val.id + '" data-tokens="' + val.Cedula + ' ' + val.Nombre + '">' + val.Nombre + '</option>';
+	      });
+	  elemento.append(tds);
+	  callback();
+	}
 }
