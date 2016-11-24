@@ -222,7 +222,70 @@ function cargarActivo()
 							$(obj).val(val);
 							$(obj).parent("div").find("span").text(val);
 						}
-					});					
+					});			
+
+					var tds = "";
+					if (data.Comentarios.length > 0)
+					{
+						tds = "";
+						$.each(data.Comentarios, function(index, val) 
+						{
+							tds += '<a href="" class="list-group-item media">';
+                                tds += '<div class="pull-left">';
+                                    tds += '<img class="avatar-img" src="img/profile-pics/1.jpg" alt="">';
+                                tds += '</div>';
+                                tds += '<div class="media-body">';
+                                    tds += '<div class="lgi-heading">' + val.Nombre + ' <small class="pull-right">' + calcularTiempoPublicacion(val.Fecha) + '</small></div>';
+                                    tds += '<small class="lgi-text">' + val.Comentario + '</small>';
+                                tds += '</div>';
+                            tds += '</a>';
+						});
+
+						$("#cntBuscar_Resultados_Comentarios").append(tds);
+					}
+
+					if (data.Archivos.length > 0)
+					{
+						tds = "";
+						$.each(data.Archivos, function(index, val) 
+						{
+							var extension = val.Nombre.split('.');
+			            	if (extension.length > 0)
+			            	{
+			            		extension = extension[extension.length - 1];
+			            	} else
+			            	{
+			            		extension = "obj";
+			            	}
+							if (extension == "jpg" || extension == "jpeg" || extension == "png" || extension == "gif")
+							{
+								tds += '<div class="col-xs-3">';
+	                                tds += '<a href="">';
+	                                    tds += '<img src="server/' + val.Ruta + '/' + val.Nombre + '" alt="">';
+	                                tds += '</a>';
+	                            tds += '</div>';
+							} else
+							{
+								tds += '<a href="server/' + val.Ruta + '/' + val.Nombre + '" target="_blank" class="list-group-item media">';
+		                            tds += '<div class="pull-left">';
+		                                tds += '<div class="avatar-char ac-check">';
+		                                    tds += '<span class="acc-helper palette-Red bg text-uppercase">' + extension + '</span>';
+		                                tds += '</div>';
+		                            tds += '</div>';
+		                            tds += '<div class="media-body">';
+		                                tds += '<div class="lgi-heading">' + val.Nombre.replace(extension, "") + '</div>';
+		                                tds += '<small class="lgi-text">' + val.Observaciones + '</small>';
+		                            tds += '</div>';
+		                        tds += '</a>';
+							}
+							
+						});
+
+						$("#cntBuscar_Resultados_Comentarios").append(tds);
+					}
+
+					Traslados
+
 				}
 			} else
 			{

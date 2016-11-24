@@ -19,12 +19,17 @@
       $Respuesta['datos'] = array();
 
       $Prefijo = "";
+      $fotosMismoModelo = 0;
+      $Modelo = "";
 
       if ( $result->num_rows > 0)
       {
          while ($row = mysqli_fetch_assoc($result))
          {
             $Prefijo = $row['id'];
+            $fotosMismoModelo = $row['FotosMismoModelo'];
+            $Modelo = $row['Modelo'];
+
             foreach ($row as $key => $value) 
             {
                $Respuesta['datos'][$key] = utf8_encode($value);
@@ -50,9 +55,13 @@
             $idx++;
          }
       }
-
       $sql = "SELECT Archivos.*, datosUsuarios.Nombre FROM Archivos INNER JOIN datosUsuarios ON Archivos.idlogin = datosUsuarios.idLogin WHERE idActivo = '$Prefijo' ORDER BY Archivos.FechaCargue DESC;";
-      
+      if ($fotosMismoModelo == 1)
+      {
+         $sql =  "SELECT Archivos.*, datosUsuarios.Nombre FROM Archivos INNER JOIN datosUsuarios ON Archivos.idlogin = datosUsuarios.idLogin WHERE idActivo = '$Prefijo' UNION ALL
+               SELECT Archivos.*, datosUsuarios.Nombre FROM Archivos INNER JOIN datosUsuarios ON Archivos.idlogin = datosUsuarios.idLogin INNER JOIN activos ON Archivos.idActivo = activos.id AND activos.Modelo = '$Modelo' WHERE idActivo <> '$Prefijo'";
+      }
+
       $result = $link->query($sql);
 
       $Respuesta['Archivos'] = array();
