@@ -43,14 +43,13 @@
       }
    } 
 
-   $sql = "INSERT INTO activos(id, Nombre, Placa, idSede, idArea, idResponsable, Responsable, Descripcion, idEstadoActivo, Serial, Modelo, Marca, Proveedor, Factura, Valor, FotosMismoModelo, FechaIngreso) VALUES (
+   $sql = "INSERT INTO activos(id, Nombre, Placa, idSede, idArea, idResponsable, Descripcion, idEstadoActivo, Serial, Modelo, Marca, Proveedor, Factura, Valor, FotosMismoModelo, FechaIngreso) VALUES (
             " . $id . ",
             '" . $datos->Nombre . "',
             '" . $datos->Placa . "',
             '" . $datos->idSede . "',
             '" . $datos->idArea . "',
             '" . $datos->idResponsable . "',
-            '" . $datos->Responsable . "',
             '" . $datos->Descripcion . "',
             '" . $datos->idEstadoActivo . "',
             '" . $datos->Serial . "',

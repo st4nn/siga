@@ -36,9 +36,11 @@
 
                 <ul class="main-menu">
                 	<br><br><br>
-                    <li id="lnkBuscar_BusquedaAvanzada" class="hide"><a data-toggle="modal" href="#modalWider"><i class="zmdi zmdi-my-location"></i> Busqueda Avanzada 1</a></li>
+                    <li id="lnkBuscar_BusquedaAvanzada"><a href="#"><i class="zmdi zmdi-my-location"></i> Busqueda Avanzada</a></li>
+
+                    <li id="lnkBuscar_BusquedaSimple" class="hide"><a href="#"><i class="zmdi zmdi-long-arrow-return"></i> Busqueda Simple</a></li>
                     
-                    <li id="lnkBuscar_VolverABusqueda" class=""><a data-toggle="modal" href="#modalWider"><i class="zmdi zmdi-search-for"></i> Volver a la Busqueda</a></li>
+                    <li id="lnkBuscar_VolverABusqueda" class="hide"><a href="#"><i class="zmdi zmdi-search-for"></i> Volver a la Busqueda</a></li>
                                         
                     <br><br><li id="lnkCerrarSesion"><a href="#"><i class="zmdi zmdi-run"></i> Cerrar Sesión</a></li>
                     
@@ -46,13 +48,13 @@
             </aside>
 
             <input id="txtBuscar_ItemSeleccionado" type="hidden">
-            <section id="cntBusqueda" class="hide">
+            <section id="cntBusqueda">
                 <div class="container">
-                    <div class="col-md-8">
+                    <div id="cntBusqueda_Simple" class="col-md-8 animated bounceInLeft">
                         <div class="card">
                             <div class="card-header">
-                                <form class="p-relative">
-                                    <input type="text" class="hs-input" placeholder="Buscar por responsable, regional, placa, etc...">
+                                <form id="frmBuscar_BusquedaSimple" class="p-relative">
+                                    <input id="txtBuscar_BusquedaSimple_Parametro" type="text" class="hs-input" placeholder="Buscar por responsable, Sede, placa, etc...">
                                     <i class="zmdi zmdi-search hs-reset c-cyan"  data-ma-action="search-clear"></i>
                                     <div class="col-sm-12">
                                         <div class="m-5 text-center">
@@ -64,33 +66,30 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 hidden">
+                    <div id="cntBuscaqueda_Avanzada" class="col-md-10 hidden animated bounceInRight">
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">BUSQUEDA AVANZADA</h4>
                             </div>
-                            <button class="btn btn-block palette-Blue-Grey bg waves-effect">Agregar Parámetro</button>
-                            <div class="card-body">
+                            <div class="card-body card-padding">
+                                <button class="btn btn-block palette-Blue-Grey bg waves-effect">Agregar Parámetro</button>
                                 <p>Poner aqui los parametros</p>
+                                <button class="btn btn-success waves-effect">Buscar</button>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="col-md-12">
+                    <div id="cntBuscar_Resultados" class="col-md-12 hide">
                         <div class="card">
                             <div class="card-body card-padding">
-                                <div class="pull-right">
-                                    <div id="cntBuscar_OpcionesRegistro" class="btn-group">
-                                        <button type="button" class="btn waves-effect" disabled="disabled"><i class="zmdi zmdi-collection-image"></i> Ver Detalles</button>
-                                    </div>
-                                </div>
                                 <div class="table-responsive">
                                     <table id="tblBuscar_Resultados" class="table table-striped">
                                         <thead>
                                             <tr>
+                                                <th data-column-id="commandos" data-formatter="commands" data-sortable="false"></th>
                                                 <th data-column-id="id" data-type="numeric" data-identifier="true">ID</th>
-                                                <th data-column-id="Regional">Regional</th>
-                                                <th data-column-id="Descripcion" data-order="desc">Nombre</th>
+                                                <th data-column-id="Sede">Sede</th>
+                                                <th data-column-id="Nombre" data-order="desc">Nombre</th>
                                                 <th data-column-id="Placa" data-order="desc">Placa</th>
                                                 <th data-column-id="Responsable" data-order="desc">Responsable</th>
                                                 <th data-column-id="Estado" data-order="desc">Estado</th>
@@ -98,15 +97,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>123</td>
-                                                <td>la Regional</td>
-                                                <td>el Nombre</td>
-                                                <td>la Placa</td>
-                                                <td>El Responsable</td>
-                                                <td>El Estado</td>
-                                                <td>El Serial</td>
-                                            </tr>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -116,7 +107,7 @@
                 </div>
             </section>
 
-            <section id="cntBusqueda_Detalles">
+            <section id="cntBusqueda_Detalles" class="hidden">
                 <div class="container">
                     <div class="col-md-6">
                         <div class="card">
@@ -136,11 +127,11 @@
                                 <br><br>
                                 <div class="row">
                                     <div class="form-group">
-                                        <label for="txtIngresar_Modelo" class="col-sm-3 control-label text-right">Regional</label>
+                                        <label for="txtIngresar_Modelo" class="col-sm-3 control-label text-right">Sede</label>
                                         <div class="col-sm-7">
                                             <div class="fg-line m-l-25">
                                                 <span class="text-uppercase">CENTRO</span>
-                                                <input type="text" class="form-control hide" id="txtIngresar_Modelo" rows="3" placeholder="Regional">
+                                                <input type="text" class="form-control hide" id="txtIngresar_Modelo" rows="3" placeholder="Sede">
                                             </div>
                                         </div>
                                     </div>
@@ -385,10 +376,10 @@
                                         </tr>
                                         <tr>
                                             <th>Fecha</th>
-                                            <th>Regional</th>
+                                            <th>Sede</th>
                                             <th>Area</th>
                                             <th>Responsable</th>
-                                            <th>Regional</th>
+                                            <th>Sede</th>
                                             <th>Area</th>
                                             <th>Responsable</th>
                                         </tr>
@@ -443,11 +434,11 @@
                                     <div class="row">
                                          <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="txtIngresar_Regional" class="col-sm-4 control-label">Regional</label>
+                                                <label for="txtIngresar_Sede" class="col-sm-4 control-label">Sede</label>
                                                 <div class="col-sm-7">
                                                     <div class="fg-line">
                                                         <div class="select">
-                                                            <select class="form-control" id="txtIngresar_Regional" placeholder="Regional">
+                                                            <select class="form-control" id="txtIngresar_Sede" placeholder="Sede">
                                                                 <option value="">1</option>
                                                                 <option value="">2</option>
                                                                 <option value="">3</option>
@@ -564,78 +555,10 @@
         <script src="js/actions.js"></script>
 
         <script src="customJS/funciones.js"></script>
+        <script src="customJS/buscar.js"></script>
         
         <script>
-            $("#tblBuscar_Resultados").bootgrid({
-                    css: {
-                        icon: 'zmdi icon',
-                        iconColumns: 'zmdi-view-module',
-                        iconDown: 'zmdi-expand-more',
-                        iconRefresh: 'zmdi-refresh',
-                        iconUp: 'zmdi-expand-less'
-                    },
-                    selection: true,
-                    multiSelect: false,
-                    rowSelect: true,
-                    keepSelection: true,
-                    caseSensitive: false,
-                    multiSort: true
-                }).on("selected.rs.jquery.bootgrid", function (e, row)
-                {
-                    $("#cntBuscar_OpcionesRegistro button").attr("disabled", false);
-                    $("#cntBuscar_OpcionesRegistro button").addClass('btn-info');
-                    $("#txtBuscar_ItemSeleccionado").val(row[0].id);
-                    $("#lnkBuscar_BusquedaAvanzada").hide();
-                    $("#lnkBuscar_VolverABusqueda").show();
-                }).on("deselected.rs.jquery.bootgrid", function (e, row)
-                {
-                    $("#cntBuscar_OpcionesRegistro button").attr("disabled", true);
-                    $("#cntBuscar_OpcionesRegistro button").removeClass('btn-info');
-                    $("#txtBuscar_ItemSeleccionado").val("");
-                    $("#lnkBuscar_BusquedaAvanzada").show();
-                    $("#lnkBuscar_VolverABusqueda").hide();
-                });
-
-            $("#lnkBuscar_VolverABusqueda").on("click", function()
-            {
-                $("#cntBusqueda").show();
-                $("#lnkBuscar_BusquedaAvanzada").show();
-                $("#lnkBuscar_VolverABusqueda").hide();
-            });
-
-            $(".btnBuscar_Detalles_Editar").on("click", function(evento)
-            {   
-                evento.preventDefault();
-                var contenedor = $(this).parent("div")
-                var obj = $(contenedor).find(".form-control");
-                $(this).removeClass("btnBuscar_Detalles_Editar");
-                $(contenedor).find("span").hide();
-                $(contenedor).find("i").removeClass("zmdi-border-color");
-                $(contenedor).find("i").addClass("zmdi-floppy");                
-                $(contenedor).find("i").addClass("btnBuscar_Detalles_Guardar");   
-
-                $(obj).show();
-                $(obj).focus();
-                
-                $(this).addClass("btnBuscar_Detalles_Guardar");
-            });
-/*
-            $(document).delegate('.btnBuscar_Detalles_Guardar', 'click', function(evento) 
-            {
-                evento.preventDefault();
-                alert("guardando");
-                var contenedor = $(this).parent("div")
-                var obj = $(contenedor).find(".form-control");
-                $(this).removeClass("btnBuscar_Detalles_Guardar");
-                $(this).addClass("btnBuscar_Detalles_Editar");
-                $(contenedor).find("span").show();
-                $(contenedor).find("span").text($(obj).val());
-                $(contenedor).find("i").addClass("zmdi-border-color");
-                $(contenedor).find("i").removeClass("zmdi-floppy");                
-                $(contenedor).find("i").removeClass("btnBuscar_Detalles_Guardar");   
-
-                $(obj).hide();
-            });*/
+            
         </script>
     </body>
   </html>

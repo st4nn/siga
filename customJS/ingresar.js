@@ -1,5 +1,6 @@
 function iniciarModulo()
 {
+	$("#lblHeader_NomModulo").text("Ingresar Activo");
 	$("#txtIngresar_id").val(obtenerPrefijo());
 	$("#txtIngresar_FechaIngreso").datetimepicker(
     {
@@ -33,6 +34,11 @@ function iniciarModulo()
     $("#txtIngresar_idEstadoActivo").cargarDatosConf("configuracion/cargarCombo", function()
         {}, {Tabla : 'estadosActivo'});            
 
+    $("#txtIngresar_Categorias").cargarDatosConf("configuracion/cargarCombo", function()
+        {
+        	$('#txtIngresar_Categorias').selectpicker("refresh");	
+        }, {Tabla : 'Etiquetas'});            
+
     $("#txtIngresar_Ciudad").on("change", function()
     {
         var idCiudad = $("#txtIngresar_Ciudad").val();
@@ -41,6 +47,8 @@ function iniciarModulo()
         	$("#txtIngresar_idSede").prepend('<option value="0">Ninguna</option>');
         }, {Tabla : 'sedes', Condicion: 'idCiudad#=#' + idCiudad});
     });
+
+
 
     $('#txtIngresar_idResponsable').on('loaded.bs.select', function (e) 
     {
@@ -222,6 +230,7 @@ function cargarResponsables(parametro)
 	
 		}, "json").fail(function()
 		{
+			Mensaje("Error", "No hay conexión con el servidor", "danger");
 			$("#txtIngresar_idResponsable").attr("data-estado", "listo");		
 		});
 	}
