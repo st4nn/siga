@@ -109,12 +109,15 @@ $.fn.llenarCombo = function(data, callback)
   callback();
 }
 
-function Mensaje(Titulo, Mensaje, Tipo)
+function Mensaje(Titulo, Mensaje, Tipo, vFrom, vAlign)
 {
     if (Tipo == undefined)
     {
         Tipo = "success";
     }
+
+    vFrom = vFrom || 'top';
+    vAlign = vAlign || 'right'
 
     $.growl({
         message: Mensaje
@@ -124,8 +127,8 @@ function Mensaje(Titulo, Mensaje, Tipo)
         label: 'Cancel',
         className: 'btn-xs btn-inverse',
         placement: {
-            from: 'top',
-            align: 'right'
+            from: vFrom,
+            align: vAlign
         },
         delay: 2500,
         animate: {

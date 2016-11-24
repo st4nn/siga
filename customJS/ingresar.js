@@ -167,6 +167,35 @@ function iniciarModulo()
 		evento.preventDefault();
 		$("#cntIngresar_Archivo").modal("hide");
 	});
+
+	$("#frmIngresar_AgregarResponsable").on("submit", function(evento)
+		{
+			evento.preventDefault();
+			$("#frmIngresar_AgregarResponsable").generarDatosEnvio("txtIngresar_AgregarResponsable_", function(datos)
+			{
+				$.post('server/php/proyecto/ingresar/agregarResponsable.php', 
+					{
+						Usuario: Usuario.id,
+						datos: datos, 
+						Ciudad : $("#txtIngresar_Ciudad").val(), 
+						Area : $("#txtIngresar_idArea").val()
+					}, function(data, textStatus, xhr) 
+	            {
+	            	if (data.Error == "")
+	            	{
+	            		Mensaje("Hey", "Se agregó el responsable", "success", "bottom");
+	            		$('#txtIngresar_idResponsable').append('<option value="' + data.datos + '" data-tokens="' + $("#txtIngresar_AgregarResponsable_Cedula").val() + ' ' + $("#txtIngresar_AgregarResponsable_Nombre").val() + '">' + $("#txtIngresar_AgregarResponsable_Nombre").val() + '</option>');
+	            		$("#txtIngresar_AgregarResponsable_Cedula").val("");
+	            		$("#txtIngresar_AgregarResponsable_Nombre").val("");
+	            		$('#txtIngresar_idResponsable').selectpicker("refresh");
+	            		$("#cntIngresar_AgregarResponsable").modal("hide");
+	            	} else
+	            	{
+	            		Mensaje("Error", data.Error, "danger");
+	            	}
+	            }, "json");
+			});
+		});
 }
 
 function cargarResponsables(parametro)
