@@ -25,71 +25,6 @@
     </head>
     <body data-ma-header="teal">
         <header id="header" class="media">
-            <div class="pull-left h-logo">
-                <a href="home.html" class="hidden-xs">
-                    <img width="65px" src="img/logo_blanco.png">
-                    <small class="f-9">Sistema de Gestión de Activos</small>
-                </a>
-                
-                <div class="menu-collapse" data-ma-action="sidebar-open" data-ma-target="main-menu">
-                    <div class="mc-wrap">
-                        <div class="mcw-line top palette-White bg"></div>
-                        <div class="mcw-line center palette-White bg"></div>
-                        <div class="mcw-line bottom palette-White bg"></div>
-                    </div>
-                </div>
-            </div>
-
-            <ul class="pull-right h-menu">
-                <li class="dropdown hidden-xs hidden-sm h-apps">
-                    <a data-toggle="dropdown" href="">
-                        <i class="hm-icon zmdi zmdi-apps"></i>
-                    </a>
-                    <ul class="dropdown-menu pull-right">
-                        <li>
-                            <a href="buscar.html">
-                                <i class="palette-Red-400 bg zmdi zmdi-search"></i>
-                                <small>Buscar Activos</small>
-                            </a>
-                        </li>
-                        
-                        <li>
-                            <a href="ingresar.html">
-                                <i class="palette-Green-400 bg zmdi zmdi-collection-plus"></i>
-                                <small>Ingresar Activo</small>
-                            </a>
-                        </li>
-                        <br>
-                        <li>
-                            <a href="reportes.html">
-                                <i class="palette-Light-Blue bg zmdi zmdi-assignment"></i>
-                                <small>Reportes</small>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="usuarios.html">
-                                <i class="palette-Orange-400 bg zmdi zmdi-accounts"></i>
-                                <small>Usuarios</small>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown hm-profile">
-                    <a data-toggle="dropdown" href="">
-                        <img src="img/profile-pics/1.jpg" alt="">
-                    </a>
-                    
-                    <ul class="dropdown-menu pull-right dm-icon">
-                        <li>
-                            <a href=""><i class="zmdi zmdi-run"></i> Cerrar Sesión</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            
-            <div class="media-body h-search">
-            	<h1 class="c-white text-center">Ingresar Activo</h1>
-            </div>
             
         </header>
 
@@ -114,18 +49,20 @@
 
             <section id="content">
                 <div class="container">
-                    <form role="form">
+                    <form role="form" id="frmIngresar">
+                        <input type="hidden" class="form-control guardar" id="txtIngresar_id" placeholder="id del Activo">
+
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-body card-padding form-horizontal">
                                     <div class="row">
-                                         <div class="col-sm-6">
+                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                <label for="txtIngresar_Regional" class="col-sm-4 control-label">Regional</label>
-                                                <div class="col-sm-7">
+                                                <label for="txtIngresar_Ciudad" class="col-sm-2 control-label">Ciudad</label>
+                                                <div class="col-sm-10">
                                                     <div class="fg-line">
                                                         <div class="select">
-                                                            <select class="form-control" id="txtIngresar_Regional" placeholder="Regional">
+                                                            <select class="form-control" id="txtIngresar_Ciudad" placeholder="Ciudad">
                                                                 <option value="">1</option>
                                                                 <option value="">2</option>
                                                                 <option value="">3</option>
@@ -134,15 +71,32 @@
                                                     </div>
                                                 </div>
                                             </div>                                    
-                                         
+                                         </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="txtIngresar_idSede" class="col-sm-4 control-label">Sede</label>
+                                                <div class="col-sm-7">
+                                                    <div class="fg-line">
+                                                        <div class="select">
+                                                            <select class="form-control guardar" id="txtIngresar_idSede" placeholder="Sede">
+                                                                <option value="">1</option>
+                                                                <option value="">2</option>
+                                                                <option value="">3</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>                                    
                                          </div>
                                          <div class="col-sm-6">
                                             <div class="form-group">
-                                                <label for="txtIngresar_CentroDeCosto" class="col-sm-4 control-label">Centro de Costo</label>
+                                                <label for="txtIngresar_idArea" class="col-sm-4 control-label">Centro de Costo</label>
                                                 <div class="col-sm-8">
                                                     <div class="fg-line">
                                                         <div class="select">
-                                                            <select class="form-control" id="txtIngresar_CentroDeCosto" placeholder="Centro de Costo">
+                                                            <select class="form-control guardar" id="txtIngresar_idArea" placeholder="Centro de Costo">
                                                                 <option value="">1</option>
                                                                 <option value="">2</option>
                                                                 <option value="">3</option>
@@ -158,7 +112,11 @@
                                             <label for="txtIngresar_Responsable" class="col-sm-2 control-label">Responsable</label>
                                             <div class="col-sm-10">
                                                 <div class="fg-line">
-                                                    <input type="text" class="form-control" id="txtIngresar_Responsable" placeholder="Nombre del Responsable">
+                                                    <!--<input type="text" class="form-control guardar" id="txtIngresar_Responsable" placeholder="Nombre del Responsable" required="true">-->
+                                                    <select id="txtIngresar_idResponsable" class="selectpicker col-xs-7 guardar" data-live-search="true" required="true">
+                                                    </select>
+                                                    <a id="btnIngresar_AgregarCategoria" data-toggle="modal" href="#cntIngresar_AgregarCategoria" class="btn btn-primary col-xs-4 pull-right">Agregar Responsable</a>
+                                                    <input type="hidden" class="form-control guardar" id="txtIngresar_idResponsable" placeholder="Nombre del Responsable">
                                                 </div>
                                             </div>
                                         </div>
@@ -172,7 +130,7 @@
                                         <label for="txtIngresar_Nombre" class="col-sm-4 control-label">Nombre del Activo</label>
                                         <div class="col-sm-7">
                                             <div class="fg-line">
-                                                <input type="text" class="form-control" id="txtIngresar_Nombre" placeholder="Nombre del Activo">
+                                                <input type="text" class="form-control guardar" id="txtIngresar_Nombre" placeholder="Nombre del Activo">
                                             </div>
                                         </div>
                                     </div>
@@ -180,7 +138,7 @@
                                         <label for="txtIngresar_Descripcion" class="col-sm-4 control-label">Descripción</label>
                                         <div class="col-sm-7">
                                             <div class="fg-line">
-                                                <textarea class="form-control" id="txtIngresar_Descripcion" rows="3" placeholder="Descripción"></textarea>
+                                                <textarea class="form-control guardar" id="txtIngresar_Descripcion" rows="3" placeholder="Descripción" required="true"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -195,7 +153,7 @@
                                                 <label for="txtIngresar_Serial" class="col-sm-4 control-label">Serial</label>
                                                 <div class="col-sm-7">
                                                     <div class="fg-line">
-                                                        <input type="text" class="form-control" id="txtIngresar_Serial" rows="3" placeholder="Serial">
+                                                        <input type="text" class="form-control guardar" id="txtIngresar_Serial" rows="3" placeholder="Serial">
                                                     </div>
                                                 </div>
                                             </div>
@@ -205,7 +163,7 @@
                                                 <label for="txtIngresar_Modelo" class="col-sm-4 control-label">Modelo</label>
                                                 <div class="col-sm-7">
                                                     <div class="fg-line">
-                                                        <input type="text" class="form-control" id="txtIngresar_Modelo" rows="3" placeholder="Modelo">
+                                                        <input type="text" class="form-control guardar" id="txtIngresar_Modelo" rows="3" placeholder="Modelo">
                                                     </div>
                                                 </div>
                                             </div>
@@ -217,7 +175,7 @@
                                                 <label for="txtIngresar_Marca" class="col-sm-4 control-label">Marca</label>
                                                 <div class="col-sm-7">
                                                     <div class="fg-line">
-                                                        <input type="text" class="form-control" id="txtIngresar_Marca" rows="3" placeholder="Marca">
+                                                        <input type="text" class="form-control guardar" id="txtIngresar_Marca" rows="3" placeholder="Marca">
                                                     </div>
                                                 </div>
                                             </div>
@@ -227,9 +185,7 @@
                                                 <label for="txtIngresar_Placa" class="col-sm-4 control-label">Placa</label>
                                                 <div class="col-sm-7">
                                                     <div class="fg-line">
-                                                        <input type="text" class="form-control" id="txtIngresar_Placa" rows="3" placeholder="Placa">
-                                                        <br>
-                                                        <button class="btn btn-primary btn-block">Generar Placa</button>
+                                                        <input type="text" class="form-control guardar" id="txtIngresar_Placa" rows="3" placeholder="Placa">
                                                     </div>
                                                 </div>
                                             </div>
@@ -245,7 +201,7 @@
 
                                 <div class="card-body card-padding form-horizontal">
                                     <div class="form-group">
-                                        <select id="txtIngresar_Categorias" class="selectpicker col-xs-7" data-live-search="true" multiple>
+                                        <select id="txtIngresar_Categorias" class="selectpicker col-xs-7 guardar" data-live-search="true" multiple required="true">
                                             <option>Mustard</option>
                                             <option>Ketchup</option>
                                             <option>Relish</option>
@@ -269,7 +225,7 @@
                                     <div class="text-center">
                                         <div class="input-group form-group ">
                                             <div class="dtp-container fg-line col-sm-12">
-                                                <input type='text' id="txtIngresar_Fecha" class="form-control" placeholder="Click Aqui...">
+                                                <input type='text' id="txtIngresar_FechaIngreso" class="form-control guardar" placeholder="Click Aqui...">
                                             </div>
                                         </div>
                                     </div>
@@ -284,7 +240,7 @@
                                         <div class="col-sm-7">
                                             <div class="fg-line">
                                                 <div class="select">
-                                                    <select class="form-control" id="txtIngresar_Estado" placeholder="Estado">
+                                                    <select class="form-control guardar" id="txtIngresar_idEstadoActivo" placeholder="Estado">
                                                         <option value="">Nuevo</option>
                                                         <option value="">Usado</option>
                                                     </select>
@@ -296,7 +252,7 @@
                                         <label for="txtIngresar_Detalles" class="col-sm-4 control-label">Detalles</label>
                                         <div class="col-sm-7">
                                             <div class="fg-line">
-                                                <textarea class="form-control" id="txtIngresar_Detalles" rows="5" placeholder="Detalles"></textarea>
+                                                <textarea class="form-control guardar" id="txtIngresar_Detalles" rows="5" placeholder="Detalles"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -309,7 +265,7 @@
                                         <label for="txtIngresar_Proveedor" class="col-sm-4 control-label">Proveedor</label>
                                         <div class="col-sm-7">
                                             <div class="fg-line">
-                                                <input type="text" class="form-control" id="txtIngresar_Proveedor" placeholder="Proveedor">
+                                                <input type="text" class="form-control guardar" id="txtIngresar_Proveedor" placeholder="Proveedor">
                                             </div>
                                         </div>
                                     </div>
@@ -317,7 +273,7 @@
                                         <label for="txtIngresar_Factura" class="col-sm-4 control-label">Factura</label>
                                         <div class="col-sm-7">
                                             <div class="fg-line">
-                                                <input type="text" class="form-control" id="txtIngresar_Factura" placeholder="Factura">
+                                                <input type="text" class="form-control guardar" id="txtIngresar_Factura" placeholder="Factura">
                                             </div>
                                         </div>
                                     </div>
@@ -325,7 +281,7 @@
                                         <label for="txtIngresar_Valor" class="col-sm-4 control-label">Valor</label>
                                         <div class="col-sm-7">
                                             <div class="fg-line">
-                                                <input type="number" class="form-control" id="txtIngresar_Valor" placeholder="Valor">
+                                                <input type="number" class="form-control guardar" id="txtIngresar_Valor" placeholder="Valor">
                                             </div>
                                         </div>
                                     </div>
@@ -337,20 +293,28 @@
                                 </div>
                                 <div class="card-body card-padding form-horizontal">
                                     <div class="row">
-                                        <div class="fileinput fileinput-new col-sm-12">
+                                        <div id="cntIngresar_DivArchivo" class="fileinput fileinput-new col-sm-12">
                                             <span class="btn btn-primary btn-file btn-block waves-effect">
                                                 <span class="fileinput-new">Agregar Archivo</span>
-                                                <input id="txtIngresar_Archivo" type="hidden"><input type="file" name="...">
+                                                <input id="txtIngresar_Archivo" type="file" name="...">
                                             </span>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="checkbox m-b-15">
                                             <label>
-                                                <input type="checkbox" id="txtIngresar_FotosMismoModelo" value="">
+                                                <input type="checkbox" class="guardar" id="txtIngresar_FotosMismoModelo" value="">
                                                 <i class="input-helper"></i>
                                                 Usar Fotografías del mismo modelo
                                             </label>
+                                        </div>
+                                    </div>
+                                    <div class="popular-post">
+                                            <h2>Archivos Cargados</h2>
+                                       
+                                        <div class="m-t-20">
+                                            <div id="cntIngresar_DivArchivo_Listado" class="list-group lg-alt">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -409,6 +373,29 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="cntIngresar_Archivo" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form id="frmIngresar_Archivo" class="form-horizontal" role="form">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Guardar Archivo <span id="lblIngresar_Archivo_Nombre"></span></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="fg-line">
+                                    <textarea id="txtIngresar_ArchivoDescripcion" class="form-control" rows="5" placeholder="Observaciones, Comentarios o Descripción del Archivo..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="btnIngresar_Archivo_Cancelar" class="btn btn-link waves-effect">Cancelar</button>
+                            <button type="submit" class="btn btn-link waves-effect">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         
         <!-- Javascript Libraries -->
         <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
@@ -432,26 +419,9 @@
 
         <script src="js/functions.js"></script>
         <script src="js/actions.js"></script>
-        
-        <script>
-            $("#txtIngresar_Fecha").datetimepicker(
-            {
-                format: 'YYYY-MM-DD',
-                inline: true,
-                sideBySide: true,
-                locale: 'es'
-            });
 
-            $("#frmIngresar_AgregarCategoria").on("submit", function(evento)
-            {   
-                evento.preventDefault();
-                if ($("#txtIngresar_AgregarCategoria_Nombre").val() != "")
-                {
-                    $("#txtIngresar_Categorias").append('<option val="' + $("#txtIngresar_AgregarCategoria_Nombre").val() + '">' + $("#txtIngresar_AgregarCategoria_Nombre").val() + '</option>');
-                    $('.selectpicker').selectpicker("refresh");
-                }
-                $("#cntIngresar_AgregarCategoria").modal("hide");
-            });
-        </script>
+        <script src="customJS/funciones.js"></script>
+        
+        <script src="customJS/ingresar.js"></script>
     </body>
   </html>

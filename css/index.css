@@ -42,10 +42,13 @@ body a,form li,input[type="submit"],input[type="text"],.sixth-login input[type="
 }
 body
 {
-	background: url(../img/bright.png) repeat;
+	background: url('../img/bright.png') no-repeat;
+	background-size: 100% auto;
+	width: 100%;
+    height: auto;
 }
 .login-form{
-	background: url(../img/bright.png) repeat;
+	/*background: url('../img/bright.png') repeat;*/
 	padding:2em 0;
 }
 .first-login,.second-login,.fourth-login,.fifth-login,.sixth-login,.seventh-login,.eight-login,.nineth-login,.third-login{
@@ -827,7 +830,7 @@ text-align:center;
 	-webkit-border-radius: 0.8em;
 }
 .login-03 {
-	background: url(../img/bright.png) repeat;
+	/*background: url(../img/bright.png) repeat;*/
 	padding:6em 0;
 }
 .third-login p {

@@ -1,7 +1,7 @@
 $(document).ready(arranque);
 function arranque()
 {
-	if(localStorage.wsp_siga)
+	if(localStorage.wsp_horus)
 	{window.location.replace("home.html");}
 
 	$("#Login").submit(Login_Submit);
@@ -22,10 +22,10 @@ function Login_Submit(evento)
 	if (validar("#Login"))
 	{
 		var cDate = new Date();
-		$.post("php/validarUsuario.php", 
+		$.post("server/php/proyecto/login/validarUsuario.php", 
 	    {
 	      pUsuario : $("#txtLogin_Usuario").val(),
-	      pClave : $("#txtLogin_Clave").val(),
+	      pClave : md5(md5(md5($("#txtLogin_Clave").val()))),
 	      pFecha : cDate
 	    }, function (data)
 	    {
@@ -33,7 +33,7 @@ function Login_Submit(evento)
 	      {
 	      	if (typeof(data) == "object")
 	      	{
-	        	localStorage.setItem("wsp_siga", JSON.stringify(data));  
+	        	localStorage.setItem("wsp_horus", JSON.stringify(data));  
 	        	window.location.replace("home.html");
 	      	}
 	      } else
