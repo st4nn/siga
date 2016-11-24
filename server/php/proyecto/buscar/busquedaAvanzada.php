@@ -53,6 +53,7 @@
    }
 
    $sql = "SELECT Consecutivo AS id, Sede, Nombre, Placa, Responsable_Nombre AS Responsable, Estado, Serial FROM v_activos $where ORDER BY FechaIngreso;";
+   
 
    $result = $link->query($sql);
 

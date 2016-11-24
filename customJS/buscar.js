@@ -65,6 +65,8 @@ function iniciarModulo()
 				        $("#cntBuscar_Resultados").hide();
 
 				        $("#cntBusqueda_Detalles").slideDown();
+
+				        cargarActivo();
 				    });
 				});
 
@@ -183,10 +185,50 @@ function iniciarModulo()
 				}
 
 				$("#cntCargando").hide();
-			}, "json");
+			}, "json").fail(function()
+			{
+				Mensaje("Error", "No hay conexión con el Servidor", "danger");
+				$("#cntCargando").hide();
+			});
 		} else
 		{
+			$("#cntCargando").hide();
 			Mensaje("Hey", "Debe ingresar por lo menos un filtro", "warning");
 		}
 	});
+}
+
+function cargarActivo()
+{
+	$("#cntBuscar_Resultados_Archivos a").remove();
+	$("#tblBuscar_Resultados_Traslados tbody tr").remove();
+	$("#cntBuscar_Resultados_Comentarios a").remove();
+
+	$.post('server/php/proyecto/buscar/cargarActivo.php', {Usuario: Usuario.id, Consecutivo: $("#txtBuscar_ItemSeleccionado").val()}, 
+		function(data, textStatus, xhr) 
+		{
+			if (data.Error == "")
+			{
+				if (data.datos == 0)
+				{
+					Mensaje("Hey", "Ningún dato coincide con la búsqueda", "warning");
+				} else
+				{
+					$.each(data.datos, function(index, val) 
+					{
+						if ($("#txtBuscar_Resultado_" + index).length > 0)							 
+						{
+							var obj = $("#txtBuscar_Resultado_" + index);
+							$(obj).val(val);
+							$(obj).parent("div").find("span").text(val);
+						}
+					});					
+				}
+			} else
+			{
+				Mensaje("Error", data.Error, "danger");
+			}
+
+			$("#cntCargando").hide();
+		}, "json");
 }
