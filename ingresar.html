@@ -113,10 +113,9 @@
                                             <div class="col-sm-10">
                                                 <div class="fg-line">
                                                     <!--<input type="text" class="form-control guardar" id="txtIngresar_Responsable" placeholder="Nombre del Responsable" required="true">-->
-                                                    <select id="txtIngresar_idResponsable" class="selectpicker col-xs-7 guardar" data-live-search="true" required="true">
+                                                    <select id="txtIngresar_idResponsable" class="selectpicker col-xs-7 guardar" data-live-search="true" data-normalized-text="true" data-estado="listo" required="true">
                                                     </select>
-                                                    <a id="btnIngresar_AgregarCategoria" data-toggle="modal" href="#cntIngresar_AgregarCategoria" class="btn btn-primary col-xs-4 pull-right">Agregar Responsable</a>
-                                                    <input type="hidden" class="form-control guardar" id="txtIngresar_idResponsable" placeholder="Nombre del Responsable">
+                                                    <a id="btnIngresar_AgregarCategoria" data-toggle="modal" href="#cntIngresar_AgregarResponsable" class="btn btn-primary col-xs-4 pull-right">Agregar Responsable</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -362,6 +361,55 @@
                                 <div class="col-sm-10">
                                     <div class="fg-line">
                                         <input type="text" class="form-control" id="txtIngresar_AgregarCategoria_Nombre" placeholder="Nombre:" required="true">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-link waves-effect">Agregar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="cntIngresar_AgregarResponsable" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <form id="frmIngresar_AgregarResponsable" class="form-horizontal" role="form">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Agregar Responsable</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="form-group">
+                                    <label for="txtUsuarios_CrearUsuario_Nombre" class="col-sm-2 control-label">Nombre: </label>
+                                    <div class="col-sm-10">
+                                        <div class="fg-line">
+                                            <input type="text" class="form-control guardar" id="txtIngresar_AgregarResponsable_Nombre" placeholder="Nombre:" required="true">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtIngresar_AgregarResponsable_Cedula" class="col-sm-4 control-label">Cedula: </label>
+                                        <div class="col-sm-8">
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control guardar" id="txtIngresar_AgregarResponsable_Cedula" placeholder="Cedula:" required="true">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="txtIngresar_AgregarResponsable_Correo" class="col-sm-2 control-label">Correo: </label>
+                                        <div class="col-sm-10">
+                                            <div class="fg-line">
+                                                <input type="email" class="form-control guardar" id="txtIngresar_AgregarResponsable_Correo" placeholder="Correo:" required="true">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

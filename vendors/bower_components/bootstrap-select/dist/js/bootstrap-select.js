@@ -342,7 +342,7 @@
     header: false,
     liveSearch: false,
     liveSearchPlaceholder: null,
-    liveSearchNormalize: false,
+    liveSearchNormalize: true,
     liveSearchStyle: 'contains',
     actionsBox: false,
     iconBase: 'glyphicon',

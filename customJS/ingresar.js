@@ -42,7 +42,15 @@ function iniciarModulo()
         }, {Tabla : 'sedes', Condicion: 'idCiudad#=#' + idCiudad});
     });
 
-    cargarResponsables();
+    $('#txtIngresar_idResponsable').on('loaded.bs.select', function (e) 
+    {
+  		var objeto = $("#txtIngresar_idResponsable").parent(".bootstrap-select").find(".bs-searchbox").find("input");
+
+  		$(objeto).on("change keyup paste", function()
+  		{
+  			cargarResponsables($(objeto).val());
+  		});
+	});
 
     $("#frmIngresar").on("submit", function(evento)
     {
@@ -161,15 +169,46 @@ function iniciarModulo()
 	});
 }
 
-function cargarResponsables()
+function cargarResponsables(parametro)
 {
-	$("#txtIngresar_idResponsable option").remove();
-	$.post('server/php/proyecto/ingresar/cargarResponsables.php', {Ciudad: $("#txtIngresar_Ciudad").val(), Area: $("#txtIngresar_idArea").val()}, function(data, textStatus, xhr) 
+	if (parametro === undefined)
 	{
-		$("#txtIngresar_idResponsable").llenarCombo(data, function(){
-			$('#txtIngresar_idResponsable').selectpicker("refresh");
-		});
-
+		parametro = "";
+	}
+	var estado = $("#txtIngresar_idResponsable").attr("data-estado");
+	if (estado == "listo")
+	{
+		$("#txtIngresar_idResponsable").attr("data-estado", "buscando");
+		$("#txtIngresar_idResponsable option").remove();
 		
-	}, "json");
+		$.post('server/php/proyecto/ingresar/cargarResponsables.php', {Parametro : parametro, Ciudad: $("#txtIngresar_Ciudad").val(), Area: $("#txtIngresar_idArea").val()}, function(data, textStatus, xhr) 
+		{
+			if (data != 0 && typeof(data) == 'object')
+			{
+				$("#txtIngresar_idResponsable").llenarCombito(data, function(){
+					$('#txtIngresar_idResponsable').selectpicker("refresh");
+				});
+			}
+			$("#txtIngresar_idResponsable").attr("data-estado", "listo");
+	
+		}, "json").fail(function()
+		{
+			$("#txtIngresar_idResponsable").attr("data-estado", "listo");		
+		});
+	}
+
+	$.fn.llenarCombito = function(data, callback)
+	{
+	  if (callback === undefined)
+	    {callback = function(){};}
+
+	  var elemento = $(this);
+	      var tds = "";
+	      $.each(data, function(index, val) 
+	      {
+	         tds += '<option value="' + val.id + '" data-tokens="' + val.Cedula + ' ' + val.Nombre + '">' + val.Nombre + '</option>';
+	      });
+	  elemento.append(tds);
+	  callback();
+	}
 }

@@ -5,6 +5,7 @@
 
    $Ciudad = addslashes($_POST['Ciudad']);
    $Area = addslashes($_POST['Area']);
+   $parametro = addslashes($_POST['Parametro']);
 
    $where = "";
 
@@ -24,6 +25,12 @@
       $idx++;
    }
 
+   if ($parametro <> "")
+   {
+      $Condiciones[$idx] = " (datosUsuarios.Nombre LIKE '%" . str_replace(" ", "%", $parametro). "%' OR datosUsuarios.Cedula LIKE '%" . $parametro . "%') ";
+      $idx++;
+   }
+
    foreach ($Condiciones as $key => $value) 
    {
       $where .= $value . " AND ";
@@ -34,7 +41,8 @@
       $where = " WHERE " . substr($where, 0, -4);
    }
 
-   $sql = "SELECT idLogin AS id, Nombre FROM datosUsuarios $where ORDER BY datosUsuarios.Nombre;";
+   //$sql = "SELECT idLogin AS id, CONCAT(datosUsuarios.Nombre, ' ', '<span class=\'hidden\'>', datosUsuarios.Cedula, '<\/span>') AS Nombre FROM datosUsuarios $where ORDER BY datosUsuarios.Nombre LIMIT 0, 15;";
+   $sql = "SELECT idLogin AS id, datosUsuarios.Nombre, datosUsuarios.Cedula FROM datosUsuarios $where ORDER BY datosUsuarios.Nombre LIMIT 0, 15;";
 
    $result = $link->query($sql);
 
