@@ -119,6 +119,12 @@
          case 10:
               $cadena = "<= '" . $Parametro . "'";
               break;
+        case 11:
+              $cadena = "IS NULL";
+              break;
+        case 12:
+              $cadena = "IS NOT NULL";
+              break;
       }
       return $cadena;
    }
