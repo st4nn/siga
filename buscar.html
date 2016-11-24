@@ -75,76 +75,80 @@
                                 </div>
                             </div>
                             <div class="card-body card-padding">
-                                <div class="row">
-                                    <div class="col-sm-2">Concatenador</div>
-                                    <div class="col-sm-3">Parametro</div>
-                                    <div class="col-sm-2">Condición</div>
-                                    <div class="col-sm-3">Filtro</div>
-                                    <div class="col-sm-2"></div>
-                                </div>
-                                <div id="txtBuscar_Avanzada_PrimeraFila" class="row">
-                                    <div class="col-sm-2">
-                                        <div class="fg-line">
-                                            <div class="select">
-                                                <select class="form-control txtBuscar_Avanzada_Concatenador">
-                                                    <option value="AND">Y</option>
-                                                    <option value="OR">O</option>
-                                                </select>
+                                <form id="frmBuscar_BusquedaAvanzada">
+                                    <div class="row">
+                                        <div class="col-sm-2">Concatenador</div>
+                                        <div class="col-sm-3">Parametro</div>
+                                        <div class="col-sm-2">Condición</div>
+                                        <div class="col-sm-3">Filtro</div>
+                                        <div class="col-sm-2"></div>
+                                    </div>
+                                    <div id="cntBuscar_Avanzada_Filas">
+                                        <div id="cntBuscar_Avanzada_PrimeraFila" class="row m-10">
+                                            <div class="col-sm-2">
+                                                <div class="fg-line">
+                                                    <div class="select">
+                                                        <select class="form-control txtBuscar_Avanzada_Concatenador">
+                                                            <option value="AND">Y</option>
+                                                            <option value="OR">O</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="fg-line">
+                                                    <div class="select">
+                                                        <select class="form-control txtBuscar_Avanzada_Campo">
+                                                            <option value='Nombre'>Nombre</option>
+                                                            <option value='Placa'>Placa</option>
+                                                            <option value='Descripcion'>Descripción</option>
+                                                            <option value='Serial'>Serial</option>
+                                                            <option value='Modelo'>Modelo</option>
+                                                            <option value='Marca'>Marca</option>
+                                                            <option value='Proveedor'>Proveedor</option>
+                                                            <option value='Factura'>Factura</option>
+                                                            <option value='Valor'>Valor</option>
+                                                            <option value='Sede'>Sede</option>
+                                                            <option value='Ciudad'>Ciudad</option>
+                                                            <option value='Responsable_Nombre'>Nombre del Responsable</option>
+                                                            <option value='Responsable_Cedula'>Cedula del Responsable</option>
+                                                            <option value='Estado'>Estado</option>
+                                                            <option value='CentroDeCosto'>Centro De Costo</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <div class="fg-line">
+                                                    <div class="select">
+                                                        <select class="form-control txtBuscar_Avanzada_Condicion">
+                                                            <option value="1">Contiene</option>
+                                                            <option value="2">Empieza por</option>
+                                                            <option value="3">Termina en</option>
+                                                            <option value="4">Es igual a</option>
+                                                            <option value="5">No contiene</option>
+                                                            <option value="6">No es igual a</option>
+                                                            <option value="7">Es mayor que</option>
+                                                            <option value="8">Es mayor o igual que</option>
+                                                            <option value="9">Es menor que</option>
+                                                            <option value="10">Es menor o igual que</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="fg-line">
+                                                    <input type="text" class="form-control txtBuscar_Avanzada_Filtro" placeholder="Filtro">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2 hide">
+                                                <button class="btn btn-danger waves-effect btnBuscar_Avanzada_BorrarParametro_fake"><i class="zmdi zmdi-delete"></i></button>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
-                                        <div class="fg-line">
-                                            <div class="select">
-                                                <select class="form-control txtBuscar_Avanzada_Campo">
-                                                    <option value='Nombre'>Nombre</option>
-                                                    <option value='Placa'>Placa</option>
-                                                    <option value='Descripcion'>Descripción</option>
-                                                    <option value='Serial'>Serial</option>
-                                                    <option value='Modelo'>Modelo</option>
-                                                    <option value='Marca'>Marca</option>
-                                                    <option value='Proveedor'>Proveedor</option>
-                                                    <option value='Factura'>Factura</option>
-                                                    <option value='Valor'>Valor</option>
-                                                    <option value='Sede'>Sede</option>
-                                                    <option value='Ciudad'>Ciudad</option>
-                                                    <option value='Responsable_Nombre'>Nombre del Responsable</option>
-                                                    <option value='Responsable_Cedula'>Cedula del Responsable</option>
-                                                    <option value='Estado'>Estado</option>
-                                                    <option value='CentroDeCosto'>Centro De Costo</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div class="fg-line">
-                                            <div class="select">
-                                                <select class="form-control txtBuscar_Avanzada_Condicion">
-                                                    <option value="1">Contiene</option>
-                                                    <option value="2">Empieza por</option>
-                                                    <option value="3">Termina en</option>
-                                                    <option value="4">Es igual a</option>
-                                                    <option value="5">No contiene</option>
-                                                    <option value="6">No es igual a</option>
-                                                    <option value="7">Es mayor que</option>
-                                                    <option value="8">Es mayor o igual que</option>
-                                                    <option value="9">Es menor que</option>
-                                                    <option value="10">Es menor o igual que</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="fg-line">
-                                            <input type="text" class="form-control txtBuscar_Avanzada_Filtro" placeholder="Filtro">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-2 hide">
-                                        <button class="btn btn-danger waves-effect btnBuscar_Avanzada_BorrarParametro"><i class="zmdi zmdi-delete"></i></button>
-                                    </div>
-                                </div>
-                                <br><br>
-                                <button class="btn btn-success waves-effect">Buscar</button>
+                                    <br><br>
+                                    <button class="btn btn-success waves-effect">Buscar</button>
+                                </form>
                             </div>
                         </div>
                     </div>

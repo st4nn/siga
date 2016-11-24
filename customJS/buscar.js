@@ -106,10 +106,9 @@ function iniciarModulo()
         }, 1200);
     });
 
-    $(".btnBuscar_Avanzada_BorrarParametro").on("click", function(evento)
-    	{
-    		$(this).parent("div").parent("div").remove();
-    	});
+    $(document).delegate('.btnBuscar_Avanzada_BorrarParametro', 'click', function(event) {
+    	$(this).parent("div").parent("div").remove();
+    });
 
 	$(".btnBuscar_Detalles_Editar").on("click", function(evento)
 	{   
@@ -126,5 +125,68 @@ function iniciarModulo()
 	    $(obj).focus();
 	    
 	    $(this).addClass("btnBuscar_Detalles_Guardar");
+	});
+
+	$("#btnBuscar_Avanzada_AgregarParametro").on("click", function(evento)
+	{
+		evento.preventDefault();
+		var modelo = $("#cntBuscar_Avanzada_PrimeraFila").html();
+		modelo = modelo.replace(' hide', '');
+		modelo = modelo.replace('btnBuscar_Avanzada_BorrarParametro_fake', 'btnBuscar_Avanzada_BorrarParametro');
+		
+		$("#cntBuscar_Avanzada_Filas").append('<div class="row">' + modelo + '</div>');
+	});
+
+	$("#frmBuscar_BusquedaAvanzada").on("submit", function(evento)
+	{
+		evento.preventDefault();
+		$("#cntCargando").show();
+		var filas = $("#cntBuscar_Avanzada_Filas").find(".row");
+
+		var datos = [];
+		var idx = 0;
+
+		$.each(filas, function(index, val) 
+		{
+			if ($(val).find('.txtBuscar_Avanzada_Filtro').val() != "")
+			{
+				datos[idx] = {
+					concatenador : $(val).find('.txtBuscar_Avanzada_Concatenador').val(),
+					parametro : $(val).find('.txtBuscar_Avanzada_Campo').val(),
+					condicion : $(val).find('.txtBuscar_Avanzada_Condicion').val(),
+					filtro : $(val).find('.txtBuscar_Avanzada_Filtro').val()
+				};
+				idx++;
+			} else
+			{
+				$(val).find('.btnBuscar_Avanzada_BorrarParametro').trigger('click');
+			}
+		});
+
+		if (idx > 0)
+		{
+			$.post('server/php/proyecto/buscar/busquedaAvanzada.php', {datos: datos}, function(data, textStatus, xhr) 
+			{
+				if (data.Error == "")
+				{
+					if (data.datos == 0)
+					{
+						Mensaje("Hey", "Ningún dato coincide con la búsqueda", "warning");
+					} else
+					{
+						$("#tblBuscar_Resultados").bootgrid("append", data.datos);
+						$("#cntBuscar_Resultados").slideDown();
+					}
+				} else
+				{
+					Mensaje("Error", data.Error, "danger");
+				}
+
+				$("#cntCargando").hide();
+			}, "json");
+		} else
+		{
+			Mensaje("Hey", "Debe ingresar por lo menos un filtro", "warning");
+		}
 	});
 }
