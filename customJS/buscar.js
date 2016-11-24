@@ -58,6 +58,7 @@ function iniciarModulo()
 				        $("#txtBuscar_ItemSeleccionado").val(consecutivo);
 				        
 				        $("#lnkBuscar_BusquedaAvanzada").hide();
+				        $("#lnkBuscar_BusquedaSimple").hide();
 				        $("#lnkBuscar_VolverABusqueda").show();
 
 				        $("#cntBusqueda").hide();
@@ -81,19 +82,19 @@ function iniciarModulo()
     {
     	$("#cntBusqueda_Simple").hide();
     	$("#lnkBuscar_BusquedaAvanzada").hide();
-    	$("#cntBuscaqueda_Avanzada").show();
+    	$("#cntBusqueda_Avanzada").show();
     	$("#lnkBuscar_BusquedaSimple").show();
 
-    	$("#cntBuscaqueda_Avanzada").addClass('bounceInRight')
+    	$("#cntBusqueda_Avanzada").addClass('bounceInRight')
 
     	setTimeout(function(){
-            $("#cntBuscaqueda_Avanzada").removeClass('bounceInRight');
+            $("#cntBusqueda_Avanzada").removeClass('bounceInRight');
         }, 1200);
     });
 
     $("#lnkBuscar_BusquedaSimple").on("click", function()
     {
-    	$("#cntBuscaqueda_Avanzada").hide();
+    	$("#cntBusqueda_Avanzada").hide();
     	$("#lnkBuscar_BusquedaSimple").hide();
     	$("#lnkBuscar_BusquedaAvanzada").show();
     	$("#cntBusqueda_Simple").show();
@@ -104,6 +105,11 @@ function iniciarModulo()
             $("#cntBusqueda_Simple").removeClass('bounceInLeft');
         }, 1200);
     });
+
+    $(".btnBuscar_Avanzada_BorrarParametro").on("click", function(evento)
+    	{
+    		$(this).parent("div").parent("div").remove();
+    	});
 
 	$(".btnBuscar_Detalles_Editar").on("click", function(evento)
 	{   
