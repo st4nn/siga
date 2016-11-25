@@ -1,0 +1,656 @@
+
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>SIGA</title>
+
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+        <link href="vendors/bootgrid/jquery.bootgrid.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
+
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet">
+        
+    </head>
+    <body data-ma-header="teal">
+        <header id="header" class="media">
+            
+        </header>
+
+        <section id="main">
+            <aside id="s-main-menu" class="sidebar">
+                <div class="smm-header">
+                    <i class="zmdi zmdi-long-arrow-left" data-ma-action="sidebar-close"></i>
+                </div>
+
+                <ul class="smm-alerts">
+
+                </ul>
+
+                <ul class="main-menu">
+                	<br><br><br>
+                    <li id="lnkReportes_Guardados" class="hide"><a data-toggle="modal" href="#"><i class="zmdi zmdi-filter-list"></i> Reportes Guardados</a></li>
+                    <li id="lnkReportes_Crear"><a data-toggle="modal" href="#"><i class="zmdi zmdi-code-setting"></i> Crear Reporte</a></li>
+                    <li><a data-toggle="modal" href="#"><i class="zmdi zmdi-chart"></i> Ver Barras</a></li>
+                    <li><a data-toggle="modal" href="#"><i class="zmdi zmdi-chart-donut"></i> Ver Torta</a></li>
+                                        
+                    <br><br><li id="lnkCerrarSesion"><a href="#"><i class="zmdi zmdi-run"></i> Cerrar Sesión</a></li>
+                    
+                </ul>
+            </aside>
+
+            <section id="content">
+                <div class="container">
+                    <div id="cntReportes_Guardados" class="animated bounceInLeft">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>Reportes Guardados <small></small></h2>
+                                </div>
+                                <div class="card-body card-padding">
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ctnReportes_Crear" class="hidden animated bounceInRight">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h2>Crear Reporte <small></small></h2>
+                                </div>
+                                <div class="card-body card-padding">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="card" >
+                                                <div class="card-header ch-dark palette-Blue-500 bg">
+                                                    <h2>Encabezado <small>Seleccione los elementos que desea ver</small></h2>
+                                                </div>
+
+                                                <div class="card-body">
+                                                    <div id="cntReportes_Encabezado" class="list-group lg-alt" style="max-height: 400px; overflow-y: scroll;">
+                                                        
+                                                        <div class="list-group-item media">
+                                                            <div class="pull-left">
+                                                                <div class="avatar-char ac-check">
+                                                                    <input class="acc-check" type="checkbox" data-campo="Consecutivo">
+
+                                                                    <span class="acc-helper palette-Purple-300 bg">#</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="lgi-heading">Consecutivo Asignado al Activo</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="list-group-item media">
+                                                            <div class="pull-left">
+                                                                <div class="avatar-char ac-check">
+                                                                    <input class="acc-check" type="checkbox" data-campo="Nombre">
+
+                                                                    <span class="acc-helper palette-Purple-300 bg">N</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="lgi-heading">Nombre Asignado al Activo</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="list-group-item media">
+                                                            <div class="pull-left">
+                                                                <div class="avatar-char ac-check">
+                                                                    <input class="acc-check" type="checkbox" data-campo="Placa">
+
+                                                                    <span class="acc-helper palette-Purple-300 bg">P</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="lgi-heading">Placa Asignada al Activo</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="list-group-item media">
+                                                            <div class="pull-left">
+                                                                <div class="avatar-char ac-check">
+                                                                    <input class="acc-check" type="checkbox" data-campo="Descripcion">
+
+                                                                    <span class="acc-helper palette-Purple-300 bg">D</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="lgi-heading">Descripción del Activo</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="list-group-item media">
+                                                            <div class="pull-left">
+                                                                <div class="avatar-char ac-check">
+                                                                    <input class="acc-check" type="checkbox" data-campo="Serial">
+
+                                                                    <span class="acc-helper palette-Purple-300 bg">S</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="lgi-heading">Serial del Activo</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="list-group-item media">
+                                                            <div class="pull-left">
+                                                                <div class="avatar-char ac-check">
+                                                                    <input class="acc-check" type="checkbox" data-campo="Modelo">
+
+                                                                    <span class="acc-helper palette-Purple-300 bg">M</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="lgi-heading">Modelo del Activo</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="list-group-item media">
+                                                            <div class="pull-left">
+                                                                <div class="avatar-char ac-check">
+                                                                    <input class="acc-check" type="checkbox" data-campo="Marca">
+
+                                                                    <span class="acc-helper palette-Purple-300 bg">M</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="lgi-heading">Marca del Activo</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="list-group-item media">
+                                                            <div class="pull-left">
+                                                                <div class="avatar-char ac-check">
+                                                                    <input class="acc-check" type="checkbox" data-campo="Proveedor">
+
+                                                                    <span class="acc-helper palette-Purple-300 bg">P</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="lgi-heading">Proveedor</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="list-group-item media">
+                                                            <div class="pull-left">
+                                                                <div class="avatar-char ac-check">
+                                                                    <input class="acc-check" type="checkbox" data-campo="Factura">
+
+                                                                    <span class="acc-helper palette-Purple-300 bg">F</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="lgi-heading">Factura asociada al Activo</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="list-group-item media">
+                                                            <div class="pull-left">
+                                                                <div class="avatar-char ac-check">
+                                                                    <input class="acc-check" type="checkbox" data-campo="Valor">
+
+                                                                    <span class="acc-helper palette-Purple-300 bg">$</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="lgi-heading">Valor del Activo</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="list-group-item media">
+                                                            <div class="pull-left">
+                                                                <div class="avatar-char ac-check">
+                                                                    <input class="acc-check" type="checkbox" data-campo="FechaIngreso">
+
+                                                                    <span class="acc-helper palette-Purple-300 bg">F</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="lgi-heading">Fecha de Ingreso o registro del Activo</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="list-group-item media">
+                                                            <div class="pull-left">
+                                                                <div class="avatar-char ac-check">
+                                                                    <input class="acc-check" type="checkbox" data-campo="Sede">
+
+                                                                    <span class="acc-helper palette-Purple-300 bg">S</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="lgi-heading">Sede del Activo</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="list-group-item media">
+                                                            <div class="pull-left">
+                                                                <div class="avatar-char ac-check">
+                                                                    <input class="acc-check" type="checkbox" data-campo="Ciudad">
+
+                                                                    <span class="acc-helper palette-Purple-300 bg">C</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="lgi-heading">Ciudad asociada al Activo</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="list-group-item media">
+                                                            <div class="pull-left">
+                                                                <div class="avatar-char ac-check">
+                                                                    <input class="acc-check" type="checkbox" data-campo="Responsable_Nombre">
+
+                                                                    <span class="acc-helper palette-Purple-300 bg">R</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="lgi-heading">Responsable del Activo</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="list-group-item media">
+                                                            <div class="pull-left">
+                                                                <div class="avatar-char ac-check">
+                                                                    <input class="acc-check" type="checkbox" data-campo="Responsable_Cedula">
+
+                                                                    <span class="acc-helper palette-Purple-300 bg">C</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="lgi-heading">Documento del responsable del Activo</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="list-group-item media">
+                                                            <div class="pull-left">
+                                                                <div class="avatar-char ac-check">
+                                                                    <input class="acc-check" type="checkbox" data-campo="Estado">
+
+                                                                    <span class="acc-helper palette-Purple-300 bg">E</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="lgi-heading">Estado del Activo</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="list-group-item media">
+                                                            <div class="pull-left">
+                                                                <div class="avatar-char ac-check">
+                                                                    <input class="acc-check" type="checkbox" data-campo="Placa">
+
+                                                                    <span class="acc-helper palette-Purple-300 bg">CC</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <div class="lgi-heading">Centro De Costo del Responsable del Activo</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card">
+                                                <div class="card-header ch-dark palette-Blue-500 bg">
+                                                    <h2>Agrupado <small>Configure las funciones para agrupar Datos</small></h2>
+                                                </div>
+                                                <div id="cntReportes_Agrupado" class="card-body card-padding">
+                                                    <br>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <h5>Activos</h5>   
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="fg-line">
+                                                                <div class="select">
+                                                                    <select class="form-control" data-campo="Consecutivo">
+                                                                        <option value="0">No Agrupar</option>
+                                                                        <option value="2">Conteo</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <h5>Centro de Costo</h5>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="fg-line">
+                                                                <div class="select">
+                                                                    <select class="form-control" data-campo="CentroDeCosto">
+                                                                        <option value="0">No Agrupar</option>
+                                                                        <option value="1">Agrupar</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <h5>Ciudad</h5>   
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="fg-line">
+                                                                <div class="select">
+                                                                    <select class="form-control" data-campo="Ciudad">
+                                                                        <option value="0">No Agrupar</option>
+                                                                        <option value="1">Agrupar</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <h5>Sede</h5>   
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="fg-line">
+                                                                <div class="select">
+                                                                    <select class="form-control" data-campo="idSede">
+                                                                        <option value="0">No Agrupar</option>
+                                                                        <option value="1">Agrupar</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <h5>Responsable</h5>   
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="fg-line">
+                                                                <div class="select">
+                                                                    <select class="form-control" data-campo="idResponsable">
+                                                                        <option value="0">No Agrupar</option>
+                                                                        <option value="1">Agrupar</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <h5>Modelo</h5>   
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="fg-line">
+                                                                <div class="select">
+                                                                    <select class="form-control" data-campo="Modelo">
+                                                                        <option value="0">No Agrupar</option>
+                                                                        <option value="1">Agrupar</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <h5>Marca</h5>   
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="fg-line">
+                                                                <div class="select">
+                                                                    <select class="form-control" data-campo="Marca">
+                                                                        <option value="0">No Agrupar</option>
+                                                                        <option value="1">Agrupar</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <h5>Proveedor</h5>   
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="fg-line">
+                                                                <div class="select">
+                                                                    <select class="form-control" data-campo="Proveedor">
+                                                                        <option value="0">No Agrupar</option>
+                                                                        <option value="1">Agrupar</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <h5>Valor</h5>   
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="fg-line">
+                                                                <div class="select">
+                                                                    <select class="form-control" data-campo="Valor">
+                                                                        <option value="0">No Agrupar</option>
+                                                                        <option value="3">Suma</option>
+                                                                        <option value="4">Promedio</option>
+                                                                        <option value="5">Suma y Promedio</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <h5>Valor</h5>   
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="fg-line">
+                                                                <div class="select">
+                                                                    <select class="form-control" data-campo="Valor">
+                                                                        <option value="0">No Agrupar</option>
+                                                                        <option value="6">Máximo</option>
+                                                                        <option value="7">Mínimo</option>
+                                                                        <option value="8">Máximo y Mínimo</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <h5>Fecha</h5>   
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="fg-line">
+                                                                <div class="select">
+                                                                    <select class="form-control" data-campo="FechaIngreso">
+                                                                        <option value="0">No Agrupar</option>
+                                                                        <option value="9">Año</option>
+                                                                        <option value="10">Mes</option>
+                                                                        <option value="11">Día</option>
+                                                                        <option value="12">Año y Mes</option>
+                                                                        <option value="13">Mes y Día</option>
+                                                                        <option value="14">Año y Mes y Día</option>
+                                                                        <option value="15">Dia de la Semana</option>
+                                                                        <option value="16">Mes Y Dia de la Semana</option>
+                                                                        <option value="17">Hora del Día</option>
+                                                                        <option value="18">Dia de la Semana y Hora del Día</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div> 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-1">
+                                            <button data-toggle="tooltip" data-placement="top" title="" data-original-title="Solo Buscar" class="btn btnReportes_Consultar btn-warning btn-float waves-effect btn-lg m-r-25 waves-circle waves-float"><i class="zmdi zmdi-search"></i></button>
+                                        </div>
+                                        <div class="col-xs-1">
+                                            <button class="btn btn-success btn-float waves-effect waves-circle waves-float m-l-25" data-toggle="tooltip" data-placement="top" title="" data-original-title="Guardar Reporte"><i class="zmdi zmdi-floppy"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="ctnReportes_Filtros" class="row">
+                        <div class="col-md-12">
+                            <div class="card" >
+                                <div class="card-header ch-dark palette-Blue-500 bg">
+                                    <h2>Filtros</h2>
+                                    <div class="pull-right">
+                                        <button id="btnReportes_Filtros_AgregarParametro" class="btn palette-Blue-Grey bg waves-effect">Agregar Parámetro</button>
+                                    </div>
+                                </div>
+                                <div class="card-body card-padding">
+                                     <div class="m-30">
+                                        <div class="row">
+                                            <div class="col-sm-2">Concatenador</div>
+                                            <div class="col-sm-3">Parametro</div>
+                                            <div class="col-sm-2">Condición</div>
+                                            <div class="col-sm-3">Filtro</div>
+                                            <div class="col-sm-2"></div>
+                                        </div>
+                                        <div id="cntReportes_Filtros_Filas">
+                                            <div id="cntReportes_Filtros_PrimeraFila" class="row">
+                                                <div class="col-sm-2">
+                                                    <div class="fg-line">
+                                                        <div class="select">
+                                                            <select class="form-control txtReportes_Filtros_Concatenador">
+                                                                <option value="AND">Y</option>
+                                                                <option value="OR">O</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="fg-line">
+                                                        <div class="select">
+                                                            <select class="form-control txtReportes_Filtros_Campo">
+                                                                <option value='Nombre'>Nombre</option>
+                                                                <option value='Placa'>Placa</option>
+                                                                <option value='Descripcion'>Descripción</option>
+                                                                <option value='Serial'>Serial</option>
+                                                                <option value='Modelo'>Modelo</option>
+                                                                <option value='Marca'>Marca</option>
+                                                                <option value='Proveedor'>Proveedor</option>
+                                                                <option value='Factura'>Factura</option>
+                                                                <option value='Valor'>Valor</option>
+                                                                <option value='Sede'>Sede</option>
+                                                                <option value='Ciudad'>Ciudad</option>
+                                                                <option value='Responsable_Nombre'>Nombre del Responsable</option>
+                                                                <option value='Responsable_Cedula'>Cedula del Responsable</option>
+                                                                <option value='Estado'>Estado</option>
+                                                                <option value='CentroDeCosto'>Centro De Costo</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="fg-line">
+                                                        <div class="select">
+                                                            <select class="form-control txtReportes_Filtros_Condicion">
+                                                                <option value="1">Contiene</option>
+                                                                <option value="2">Empieza por</option>
+                                                                <option value="3">Termina en</option>
+                                                                <option value="4">Es igual a</option>
+                                                                <option value="5">No contiene</option>
+                                                                <option value="6">No es igual a</option>
+                                                                <option value="7">Es mayor que</option>
+                                                                <option value="8">Es mayor o igual que</option>
+                                                                <option value="9">Es menor que</option>
+                                                                <option value="10">Es menor o igual que</option>
+                                                                <option value="11">Esta en Blanco</option>
+                                                                <option value="12">NO esta en Blanco</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="fg-line">
+                                                        <input type="text" class="form-control txtReportes_Filtros_Filtro" placeholder="Filtro">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2 hide">
+                                                    <button class="btn btn-danger waves-effect btnReportes_Filtros_BorrarParametro_fake"><i class="zmdi zmdi-delete"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="cntReportes_Resultado" class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body card-padding">
+                                    <div id="cntReportes_Resultado_Tabla" class="table-responsive">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer id="footer">
+                <!--Copyright &copy; 2015 Material Admin-->
+
+                <ul class="f-menu">
+                    <img src="img/wsplogo_gris.png" alt="">
+                </ul>
+            </footer>
+
+        </section>
+
+        <!-- Page Loader -->
+        <div class="page-loader palette-Teal bg">
+            <div class="preloader pl-xl pls-white">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Javascript Libraries -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bootgrid/jquery.bootgrid.updated.min.js"></script>
+        <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
+
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+        <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+
+        <script src="js/functions.js"></script>
+        <script src="js/actions.js"></script>
+
+        <script src="customJS/funciones.js"></script>
+        <script src="customJS/reportes.js"></script>
+    </body>
+  </html>
